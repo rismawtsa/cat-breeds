@@ -2,7 +2,15 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { getBreedList, searchBreeds } from "./services/catApi";
 import Error from "./components/error";
 import Search from "./components/search";
+import Header from "./components/header";
+import Skeleton from "./components/skeleton";
+import NoData from "./components/noData";
+import Arrow from "./components/arrow";
+import noImage from "./assets/no-image-icon-15.png";
+
 import "./App.css";
+
+const LIMIT = 10;
 
 function App() {
   const [catBreedList, setCatBreedList] = useState([]);
@@ -33,7 +41,7 @@ function App() {
       setIsLoading(true);
       const list = await getBreedList(page);
       setCatBreedList((prev) => prev.concat(list));
-      if (list.length === 0) setNoData(true);
+      if (list.length < LIMIT) setNoData(true);
     } catch (error) {
       setError(error);
     } finally {
@@ -48,11 +56,9 @@ function App() {
   const handleSearchBreeds = async (name) => {
     const list = await searchBreeds(name);
     setCatBreeds(list);
-    console.log("handleSearchBreeds", list);
   };
 
   const handleClearSearch = () => {
-    console.log("handleClearSearch");
     setCatBreeds(null);
   };
 
@@ -62,41 +68,57 @@ function App() {
   };
 
   const generateBreedList = () => {
-    if (catBreedList.length === 0) return <div>No Data</div>;
-
     let list = catBreedList;
     if (catBreeds) list = catBreeds;
+
+    if (!isLoading && list.length === 0) return <NoData />;
 
     return (
       <ul className="list">
         {list.map((cat, index) => {
-          if (index + 1 === list.length) {
-            return (
-              <li
-                key={cat.id}
-                onClick={() => handleItemClick(cat.id)}
-                ref={lastCatElementRef}
-              >
-                <div>{cat.name}</div>
-                {showDetail[cat.id] && (
-                  <div>
-                    {cat.id}|{cat.name} more detail will be here
+          let ref = null;
+          if (index + 1 === list.length) ref = lastCatElementRef;
+          return (
+            <li key={index} ref={ref}>
+              <div className="item" onClick={() => handleItemClick(cat.id)}>
+                <div className="item-image">
+                  <img
+                    src={cat.image ? cat.image.url : noImage}
+                    alt={cat.image && cat.image.id}
+                  />
+                </div>
+                <div>
+                  <div className="item-name">{cat.name}</div>
+                  <div className="item-other-info">
+                    <i>{cat.temperament}</i>
                   </div>
-                )}
-              </li>
-            );
-          } else {
-            return (
-              <li key={cat.id} onClick={() => handleItemClick(cat.id)}>
-                <div>{cat.name}</div>
-                {showDetail[cat.id] && (
+                </div>
+                <Arrow type={showDetail[cat.id] ? "collapse" : "expand"} />
+              </div>
+              {showDetail[cat.id] && (
+                <div className="item-detail">
+                  <strong>Id: {cat.id}</strong>
+                  <p>{cat.description}</p>
                   <div>
-                    {cat.id}|{cat.name} more detail will be here
+                    {cat.origin}
+                    <br />
+                    <br />
+                    {cat.weight && cat.weight.metric} kgs
+                    <br />
+                    {cat.life_span} avarage life span
+                    <br />
                   </div>
-                )}
-              </li>
-            );
-          }
+                  <a
+                    href={cat.wikipedia_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Wikipedia
+                  </a>
+                </div>
+              )}
+            </li>
+          );
         })}
       </ul>
     );
@@ -104,15 +126,13 @@ function App() {
 
   return (
     <>
-      <Error message={error} />
-      <header className="App-header">
-        <h3>List of Cat breeds</h3>
-      </header>
+      <Header />
       <main>
         <Search onSearch={handleSearchBreeds} onClear={handleClearSearch} />
         {generateBreedList()}
-        {isLoading && <div>loading...</div>}
-        {noData && <div>No more data</div>}
+        <Skeleton isLoading={isLoading} count={page === 0 ? 4 : 1} />
+        {<NoData isShow={noData} message="--- No More Data ---" />}
+        <Error message={error} />
       </main>
     </>
   );

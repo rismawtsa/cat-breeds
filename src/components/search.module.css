@@ -1,3 +1,40 @@
 .searchWrapper {
+  border: solid 1px #d5d3d3;
+  width: 50%;
+  border-radius: 5px;
   display: flex;
+  justify-content: space-between;
+}
+
+.focus {
+  border-color: #cf7b00;
+}
+
+.searchWrapper input {
+  width: 93%;
+  border: none;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  outline: none;
+  font-size: 18px;
+  padding: 10px;
+}
+
+.searchWrapper button {
+  width: 7%;
+  background: none;
+  border: none;
+  /* font-weight: bold; */
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.searchWrapper button:hover {
+  opacity: 0.6;
+}
+
+@media only screen and (max-width: 600px) {
+  .searchWrapper {
+    width: 100%;
+  }
 }

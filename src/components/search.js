@@ -1,27 +1,35 @@
 import { useState } from "react";
-import styles from "./error.module.css";
+import styles from "./search.module.css";
+
 export default function Search({ onSearch, onClear }) {
-  const [name, setName] = useState("");
+  const [query, setQuery] = useState("");
+  const [isFocus, setIsFocus] = useState(false);
+
   const handleInputChange = (e) => {
-    setName(e.target.value);
+    setQuery(e.target.value);
   };
+
   const handleClearClick = () => {
-    setName("");
+    setQuery("");
     onClear();
   };
-  const handleSearchClick = () => {
-    onSearch(name);
-  };
+
+  let searchWrapperStyle = styles.searchWrapper;
+  if (isFocus) {
+    searchWrapperStyle += " " + styles.focus;
+  }
+
   return (
-    <div style={styles.searchWrapper}>
+    <div className={searchWrapperStyle}>
       <input
         type="text"
-        placeholder="name"
-        value={name}
+        placeholder="search"
+        value={query}
         onChange={handleInputChange}
+        onFocus={() => setIsFocus(true)}
+        onBlur={() => setIsFocus(false)}
       />
-      <button onClick={handleClearClick}>Clear</button>
-      <button onClick={handleSearchClick}>Search</button>
+      {query && <button onClick={handleClearClick}>X</button>}
     </div>
   );
 }

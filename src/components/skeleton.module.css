@@ -1,0 +1,38 @@
+.skeletonWrapper {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 37%);
+  margin-top: 1rem;
+}
+
+.skeletonImg {
+  width: 5rem;
+  height: 5rem;
+  margin-right: 0.5rem;
+  animation: skeleton-loading 1s linear infinite alternate;
+}
+
+.skeletonText div {
+  animation: skeleton-loading 1s linear infinite alternate;
+}
+
+.skeletonText div:first-child {
+  width: 12rem;
+  height: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.skeletonText div:last-child {
+  width: 20rem;
+  height: 1rem;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: hsl(200, 20%, 70%);
+  }
+  100% {
+    background-color: hsl(200, 20%, 95%);
+  }
+}

@@ -1,0 +1,23 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.navbar h2 {
+  margin: 0;
+  color: #cf7b00;
+  font-size: 2rem;
+}
+
+.navbar a {
+  display: block;
+  text-decoration: none;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.navbar a > img {
+  width: 100%;
+}
