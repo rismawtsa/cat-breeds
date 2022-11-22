@@ -33,14 +33,14 @@
   opacity: 0.6;
 }
 
-@media only screen and (max-width: 760px) {
-  .searchWrapper {
-    width: 100%;
-  }
-}
-
 @media only screen and (max-width: 820px) {
   .searchWrapper {
     width: 80%;
+  }
+}
+
+@media only screen and (max-width: 760px) {
+  .searchWrapper {
+    width: 100%;
   }
 }
