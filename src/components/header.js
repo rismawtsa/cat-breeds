@@ -7,7 +7,7 @@ export default function Header() {
       <nav className={styles.navbar}>
         <h2>CatBreeds</h2>
         <a
-          href="https://github.com/rismawtsa/cat-breed"
+          href="https://github.com/rismawtsa/cat-breeds"
           target="_blank"
           rel="noopener noreferrer"
         >
