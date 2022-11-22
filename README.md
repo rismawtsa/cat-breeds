@@ -15,15 +15,26 @@ A list of the cat breeds is fetched from [TheCatApi](https://docs.thecatapi.com/
 
 Open the terminal,
 
-1. Change the directory/folder to where you want to put it
-   eg. `cd Documents/Projects`
-2. Clone the repository
-   `git clone https://github.com/rismawtsa/cat-breeds.git`
+1. Change the directory/folder to where you want to put it.
+   eg. 
+   ```
+   cd Documents/Projects
+   ```
+2. Clone the repository.
+   ```
+   git clone https://github.com/rismawtsa/cat-breeds.git
+   ```
    It will create the cat-breeds directory/folder and download the source code
-3. Change the directory/folder to cat-breeds
-   `cd cat-breeds`
-4. Install the dependencies
-   `npm install`
-5. Running the application
-   `npm start`
+3. Change the directory/folder to cat-breeds.
+   ```
+   cd cat-breeds
+   ```
+4. Install the dependencies  
+   ```
+   npm install
+   ```
+5. Running the application 
+   ```
+   npm start
+   ```
    It should open the app on the browser automatically
