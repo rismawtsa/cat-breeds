@@ -6,7 +6,10 @@ export default function Search({ onSearch, onClear }) {
   const [isFocus, setIsFocus] = useState(false);
 
   const handleInputChange = (e) => {
-    setQuery(e.target.value);
+    const { value } = e.target;
+
+    setQuery(value);
+    onSearch(value);
   };
 
   const handleClearClick = () => {

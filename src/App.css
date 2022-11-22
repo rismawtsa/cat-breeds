@@ -1,5 +1,6 @@
 main {
   margin-top: 1.8rem;
+  margin-bottom: 1.8rem;
 }
 
 .list {
@@ -61,10 +62,4 @@ main {
   display: block;
   color: #cf7b00;
   margin-top: 1rem;
-}
-
-@media only screen and (max-width: 600px) {
-  .item div:last-child {
-    width: 90%;
-  }
 }

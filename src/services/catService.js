@@ -8,11 +8,4 @@ const getBreedList = async (page) => {
   return data;
 };
 
-const searchBreeds = async (name) => {
-  const respon = await fetch(`${CAT_API_URL}/search?q=${name}`);
-  const data = await respon.json();
-
-  return data;
-};
-
-export { getBreedList, searchBreeds };
+export { getBreedList };
