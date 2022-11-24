@@ -7,7 +7,7 @@ export default function useCatFetch(page) {
   const [isLoading, setIsLoading] = useState(true);
   const [catList, setCatList] = useState([]);
   const [error, setError] = useState(null);
-  const [hasMore, setHasMore] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
     setIsLoading(true);

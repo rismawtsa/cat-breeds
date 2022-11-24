@@ -13,10 +13,12 @@ A list of the cat breeds is fetched from [TheCatApi](https://docs.thecatapi.com/
 
 ## Installation
 
+Make sure Node.js is already installed.
+
 Open the terminal,
 
 1. Change the directory/folder to where you want to put it.
-   eg. 
+   eg.
    ```
    cd Documents/Projects
    ```
@@ -29,11 +31,11 @@ Open the terminal,
    ```
    cd cat-breeds
    ```
-4. Install the dependencies  
+4. Install the dependencies
    ```
    npm install
    ```
-5. Running the application 
+5. Running the application
    ```
    npm start
    ```
